@@ -1,0 +1,23 @@
+﻿{
+  "Value": [
+    {
+      "Name": "Test shop 1",
+      "Bouquets": [],
+      "Id": 1
+    },
+    {
+      "Name": "Test shop 2",
+      "Bouquets": [],
+      "Id": 2
+    },
+    {
+      "Name": "Test shop 3",
+      "Bouquets": [],
+      "Id": 2
+    }
+  ],
+  "Formatters": [],
+  "ContentTypes": [],
+  "DeclaredType": null,
+  "StatusCode": 200
+}
