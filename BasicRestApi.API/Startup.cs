@@ -45,6 +45,7 @@ namespace BasicRestApi.API
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors());
             services.AddTransient<IShopRepository, ShopRepository>();
+            services.AddTransient<IBouquetRepository, BouquetRepository>();
             
             //Generate a swagger file
             services.AddSwaggerGen(c =>

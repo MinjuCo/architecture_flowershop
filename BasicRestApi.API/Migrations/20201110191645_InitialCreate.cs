@@ -13,7 +13,9 @@ namespace BasicRestApi.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false)
+                    Name = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false),
+                    Address = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false),
+                    Region = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -27,7 +29,9 @@ namespace BasicRestApi.API.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     ShopId = table.Column<int>(type: "int", nullable: false),
-                    Name = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false)
+                    Name = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false),
+                    Price = table.Column<double>(type: "double", nullable: false),
+                    Description = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {

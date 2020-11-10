@@ -1,14 +1,18 @@
 namespace BasicRestApi.API.Models.Web
 {
-    class ShopWebOutput
+    public class ShopWebOutput
     {
-        public ShopWebOutput(int id, string name)
+        public ShopWebOutput(int id, string name, string address, string region)
         {
           Id = id;
           Name = name;
+          Address = address;
+          Region = region;
         }
 
         public int Id { get; set; }
         public string Name { get; set; }
+        public string Address { get; set; }
+        public string Region { get; set; }
     }
 }

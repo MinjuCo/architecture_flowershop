@@ -22,10 +22,18 @@ namespace BasicRestApi.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(2048)
                         .HasColumnType("longtext");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
 
                     b.Property<int>("ShopId")
                         .HasColumnType("int");
@@ -43,7 +51,17 @@ namespace BasicRestApi.API.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(2048)
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Region")
                         .IsRequired()
                         .HasMaxLength(2048)
                         .HasColumnType("longtext");

@@ -24,15 +24,23 @@ namespace BasicRestApi.API.Controllers
         public IActionResult GetAllShops()
         {
             _logger.LogInformation("Getting all shops");
-            var shops = _shopRepository.GetAllShops().Select(x => x).ToList();
+            var shops = _shopRepository.GetAllShops().Select(x => x.Convert()).ToList();
             return Ok(shops);
+        }
+
+        [HttpGet("{id}")]
+        public IActionResult ShopById(int id)
+        {
+            _logger.LogInformation("Getting shop by id", id);
+            var shop = _shopRepository.GetOneShopById(id);
+            return shop == null ? (IActionResult) NotFound() : Ok(shop.Convert());
         }
 
         [HttpPost]
         public IActionResult CreateShop(ShopUpsertInput input)
         {
             _logger.LogInformation("Creating a shop", input);
-            var persistedShop = _shopRepository.Insert(input.Name);
+            var persistedShop = _shopRepository.Insert(input.Name, input.Address, input.Region);
             return Created($"/shops/{persistedShop.Id}", persistedShop);
         }
     }

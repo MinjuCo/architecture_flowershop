@@ -8,5 +8,13 @@ namespace BasicRestApi.API.Models.Web
         [Required]
         [StringLength(1000)]
         public string Name { get; set; }
+
+        [Required]
+        [StringLength(1000)]
+        public string Address { get; set; }
+
+        [Required]
+        [StringLength(500)]
+        public string Region { get; set; }
     }
 }

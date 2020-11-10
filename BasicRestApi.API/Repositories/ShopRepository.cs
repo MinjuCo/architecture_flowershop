@@ -28,32 +28,40 @@ namespace BasicRestApi.API.Repositories
         public void Delete(int id)
         {
           var shop = _context.Shops.Find(id);
-          /*if(shop == null)
+          if(shop == null)
           {
             throw new NotFoundException();
-          }*/
+          }
+
+          _context.Shops.Remove(shop);
+          _context.SaveChanges();
         }
 
-        public Shop Insert(string name)
+        public Shop Insert(string name, string address, string region)
         {
           var shop = new Shop
           {
-            Name = name
+            Name = name,
+            Address = address,
+            Region = region
           };
           _context.Shops.Add(shop);
           _context.SaveChanges();
           return shop;
         }
 
-        public Shop Update(int id, string name)
+        public Shop Update(int id, string name, string address, string region)
         {
           var shop = _context.Shops.Find(id);
-          /*if(shop == null)
+          if(shop == null)
           {
             throw new NotFoundException();
-          }*/
+          }
 
           shop.Name = name;
+          shop.Address = address;
+          shop.Region = region;
+          
           _context.SaveChanges();
           return shop;
         }

@@ -8,7 +8,7 @@ namespace BasicRestApi.API.Repositories
         IEnumerable<Shop> GetAllShops();
         Shop GetOneShopById(int id);
         void Delete(int id);
-        Shop Insert(string name);
-        Shop Update(int id, string name);
+        Shop Insert(string name, string address, string region);
+        Shop Update(int id, string name, string address, string region);
     }
 }
