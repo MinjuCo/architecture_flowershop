@@ -1,13 +1,14 @@
 using System;
 using BasicRestApi.API.Database;
+using BasicRestApi.API.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Microsoft.Extensions.Logging;
-using Microsoft.EntityFrameworkCore;
 using Pomelo.EntityFrameworkCore.MySql.Infrastructure;
 
 namespace BasicRestApi.API
@@ -24,8 +25,9 @@ namespace BasicRestApi.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+             services.AddControllers();
             // Database connection with MySQL Pomelo
-            services.AddDbContextPool<AppDbContext>(    
+            services.AddDbContextPool<flowershopContext>(    
                 dbContextOptions => dbContextOptions
                     .UseMySql(
                         // Replace with your connection string. Should be in your env but for example purposes this is _good enough_ for now
@@ -42,7 +44,8 @@ namespace BasicRestApi.API
                                 .AddFilter(level => level >= LogLevel.Information)))
                     .EnableSensitiveDataLogging()
                     .EnableDetailedErrors());
-            services.AddControllers();
+            services.AddTransient<IShopRepository, ShopRepository>();
+            
             //Generate a swagger file
             services.AddSwaggerGen(c =>
             {

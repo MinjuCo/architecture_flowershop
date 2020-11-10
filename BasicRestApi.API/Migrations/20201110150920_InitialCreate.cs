@@ -13,7 +13,7 @@ namespace BasicRestApi.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
+                    Name = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -26,8 +26,8 @@ namespace BasicRestApi.API.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Name = table.Column<string>(type: "longtext", nullable: false),
-                    ShopId = table.Column<int>(type: "int", nullable: true)
+                    ShopId = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "longtext", maxLength: 2048, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -37,7 +37,7 @@ namespace BasicRestApi.API.Migrations
                         column: x => x.ShopId,
                         principalTable: "Shops",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

@@ -1,8 +1,7 @@
-using System;
 using System.Linq;
-using BasicRestApi.API.Database;
-using BasicRestApi.API.Models.Domain;
+using BasicRestApi.API.Models;
 using BasicRestApi.API.Models.Web;
+using BasicRestApi.API.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 
@@ -12,12 +11,12 @@ namespace BasicRestApi.API.Controllers
     [Route("shops")]
     public class ShopController : ControllerBase
     {
-        private readonly AppDbContext _database;
+        private readonly IShopRepository _shopRepository;
         private readonly ILogger<ShopController> _logger;
 
-        public ShopController(AppDbContext database, ILogger<ShopController> logger)
+        public ShopController(IShopRepository shopRepository, ILogger<ShopController> logger)
         {
-            _database = database;
+            _shopRepository = shopRepository;
             _logger = logger;
         }
 
@@ -25,8 +24,16 @@ namespace BasicRestApi.API.Controllers
         public IActionResult GetAllShops()
         {
             _logger.LogInformation("Getting all shops");
-            var shops = _database.Shops.Select(x => new ShopWebOutput(x.Id, x.Name)).ToArray();
+            var shops = _shopRepository.GetAllShops().Select(x => x).ToList();
             return Ok(shops);
+        }
+
+        [HttpPost]
+        public IActionResult CreateShop(ShopUpsertInput input)
+        {
+            _logger.LogInformation("Creating a shop", input);
+            var persistedShop = _shopRepository.Insert(input.Name);
+            return Created($"/shops/{persistedShop.Id}", persistedShop);
         }
     }
 }

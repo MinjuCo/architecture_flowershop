@@ -13,11 +13,13 @@ namespace BasicRestApi.API.Models.Domain
         [MaxLength(2048)]
         public string Name { get; set; }
 
+        /*
         [Required]
         public double Price { get; set; }
 
         [Required]
         [MaxLength(2048)]
         public string Description { get; set; }
+        */
     }
 }
