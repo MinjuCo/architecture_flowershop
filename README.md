@@ -1,9 +1,10 @@
 # architecture_flowershop
 
-Maury: Ik heb mijn basiskennis proberen te maken door innformatie en meer op te zoeken,  omdat ik de basis kennis nog niet heb.
+Maury: Ik heb mijn basiskennis proberen te maken door innformatie en meer op te zoeken,  omdat ik de basis kennis nog niet heb. 
+De sales pagina was nog niet gelukt, dus deze moet nog worden gefixt en worden verwerkt.
 
 We hebben problemen ondervonden met de data bank connectie dus het doorsturen en opvragen van data was niet echt gelukt.
-Edit: na het opzoeken en bekijken filmpjes hebben we ondervonden dat we de XAMPP niet correct was opgezet.
+Edit: na het opzoeken en bekijken filmpjes hebben we ondervonden dat we de XAMPP niet correct hadden opgezet.
 
 Bronnen:
 https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/
