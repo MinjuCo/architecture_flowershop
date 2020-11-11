@@ -10,13 +10,13 @@ You will need the following software:
 * An editor/IDE of your choice. [Visual Studio](https://code.visualstudio.com/) was used for this project, because you can access the command line directly from it and you can install extensions very easily.
 
 ## Usage
-You can use 'dotnet watch run' to run the project; after you get the notification that the application is started, go to http://Localhost:5000/swagger/index.html; you will get an overview with all the API methods and a quick method to execute them.
+You can use `dotnet watch run` to run the project; after you get the notification that the application is started, go to http://Localhost:5000/swagger/index.html; you will get an overview with all the API methods and a quick method to execute them. Don't forget to setup the database.
 
 ### Explanation
 
-* 'dotnet watch run' is a file monitor; it compiles and whatches your code.
+* `dotnet watch run` is a file monitor; it compiles and whatches your code.
 
-## TO DO
+## Developers note
 Maury: 
 > Ik heb mijn basiskennis proberen te maken door innformatie en meer op te zoeken,  omdat ik de basis kennis nog niet heb. 
 > De sales pagina was nog niet gelukt, dus deze moet nog worden gefixt en worden verwerkt.
@@ -24,7 +24,8 @@ Maury:
 We hebben problemen ondervonden met de data bank connectie dus het doorsturen en opvragen van data was niet echt gelukt.
 Update: na het opzoeken en bekijken van filmpjes hebben we ondervonden dat we de XAMPP niet correct hadden opgezet.
 
-- [X] Endpoints om bloemen en winkels toe te voegen
+### TO DO
+- [X] Endpoints om bloemen en winkels te zien en toe te voegen
 - [X] Async en swagger implementeren
 - [ ] Relevante testen voor alle containers toevoegen: er is op dit moment enkel één dummy-test waarbij 'GetAllShops' wordt getest.
 - [ ] Endpoints/migratie voor verkoop van bloemen moet nog geïmplementeerd worden -> nogal vaag bij ons hoe we dat gaan doen
