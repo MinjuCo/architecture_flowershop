@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using System.Text.Json.Serialization;
 using BasicRestApi.API.Database;
 using BasicRestApi.API.Repositories;
 using Microsoft.AspNetCore.Builder;
@@ -25,8 +27,13 @@ namespace BasicRestApi.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-             services.AddControllers();
+             services
+                .AddControllers()
+                .AddJsonOptions(options =>
+                    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter()));
+                ;
             // Database connection with MySQL Pomelo
+            // // https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
             services.AddDbContextPool<flowershopContext>(    
                 dbContextOptions => dbContextOptions
                     .UseMySql(
@@ -55,6 +62,9 @@ namespace BasicRestApi.API
                     Title = "Flowershop API", 
                     Version = "v1" 
                 });
+
+                var filePath = Path.Combine(System.AppContext.BaseDirectory, "BasicRestApi.API.xml");
+                c.IncludeXmlComments(filePath);
             });
         }
 

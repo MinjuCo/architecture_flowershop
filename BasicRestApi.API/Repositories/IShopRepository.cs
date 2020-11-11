@@ -1,14 +1,15 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using BasicRestApi.API.Models.Domain;
 
 namespace BasicRestApi.API.Repositories
 {
     public interface IShopRepository
     {
-        IEnumerable<Shop> GetAllShops();
-        Shop GetOneShopById(int id);
-        void Delete(int id);
-        Shop Insert(string name, string address, string region);
-        Shop Update(int id, string name, string address, string region);
+        Task<IEnumerable<Shop>> GetAllShops();
+        Task<Shop> GetOneShopById(int id);
+        Task Delete(int id);
+        Task<Shop> Insert(string name, string address, string region);
+        Task<Shop> Update(int id, string name, string address, string region);
     }
 }

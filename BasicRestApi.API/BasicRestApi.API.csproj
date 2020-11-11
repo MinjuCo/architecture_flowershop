@@ -7,6 +7,15 @@
     <NullableContextOptions>enable</NullableContextOptions>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+   <DocumentationFile>.\BasicRestApi.API\BasicRestApi.API.xml</DocumentationFile>
+ </PropertyGroup>
+
+  <PropertyGroup>
+  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.0">

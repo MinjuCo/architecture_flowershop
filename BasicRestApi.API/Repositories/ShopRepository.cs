@@ -1,8 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BasicRestApi.API.Database;
 using BasicRestApi.API.Models;
 using BasicRestApi.API.Models.Domain;
+using Microsoft.EntityFrameworkCore;
 
 namespace BasicRestApi.API.Repositories
 {
@@ -15,29 +17,29 @@ namespace BasicRestApi.API.Repositories
           _context = context;
         }
 
-        public IEnumerable<Shop> GetAllShops()
+        public async Task<IEnumerable<Shop>> GetAllShops()
         {
-          return _context.Shops.ToList();
+          return await _context.Shops.ToListAsync();
         }
 
-        public Shop GetOneShopById(int id)
+        public async Task<Shop> GetOneShopById(int id)
         {
-          return _context.Shops.Find(id);
+          return await _context.Shops.FindAsync(id);
         }
 
-        public void Delete(int id)
+        public async Task Delete(int id)
         {
-          var shop = _context.Shops.Find(id);
+          var shop = await _context.Shops.FindAsync(id);
           if(shop == null)
           {
             throw new NotFoundException();
           }
 
           _context.Shops.Remove(shop);
-          _context.SaveChanges();
+          _context.SaveChangesAsync();
         }
 
-        public Shop Insert(string name, string address, string region)
+        public async Task<Shop> Insert(string name, string address, string region)
         {
           var shop = new Shop
           {
@@ -45,14 +47,14 @@ namespace BasicRestApi.API.Repositories
             Address = address,
             Region = region
           };
-          _context.Shops.Add(shop);
-          _context.SaveChanges();
+          _context.Shops.AddAsync(shop);
+          _context.SaveChangesAsync();
           return shop;
         }
 
-        public Shop Update(int id, string name, string address, string region)
+        public async Task <Shop> Update(int id, string name, string address, string region)
         {
-          var shop = _context.Shops.Find(id);
+          var shop = await _context.Shops.FindAsync(id);
           if(shop == null)
           {
             throw new NotFoundException();
@@ -62,7 +64,7 @@ namespace BasicRestApi.API.Repositories
           shop.Address = address;
           shop.Region = region;
           
-          _context.SaveChanges();
+          _context.SaveChangesAsync();
           return shop;
         }
     }

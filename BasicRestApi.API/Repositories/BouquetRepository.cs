@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BasicRestApi.API.Database;
 using BasicRestApi.API.Models;
 using BasicRestApi.API.Models.Domain;
@@ -16,11 +17,11 @@ namespace BasicRestApi.API.Repositories
           _context = context;
         }
 
-        public IEnumerable<Bouquet> GetAllBouquets(int shopId)
+        public async Task<IEnumerable<Bouquet>> GetAllBouquets(int shopId)
         {
-          var shopWithBouquets = _context.Shops
+          var shopWithBouquets = await _context.Shops
           .Include(x => x.Bouquets)
-          .FirstOrDefault(x => x.Id == shopId);
+          .FirstOrDefaultAsync(x => x.Id == shopId);
           if (shopWithBouquets == null)
           {
             throw new NotFoundException();
@@ -29,11 +30,11 @@ namespace BasicRestApi.API.Repositories
           return shopWithBouquets.Bouquets;
         }
 
-        public Bouquet GetOneBouquetById(int shopId, int bouquetId)
+        public async Task<Bouquet> GetOneBouquetById(int shopId, int bouquetId)
         {
-          CheckShopExists(shopId);
+          await CheckShopExists(shopId);
 
-          var bouquet = _context.Bouquets.FirstOrDefault(x => x.ShopId == shopId && x.Id == bouquetId);
+          var bouquet = await _context.Bouquets.FirstOrDefaultAsync(x => x.ShopId == shopId && x.Id == bouquetId);
           if(bouquet == null)
           {
             throw new NotFoundException();
@@ -42,16 +43,16 @@ namespace BasicRestApi.API.Repositories
           return bouquet;
         }
 
-        public void Delete(int shopId, int bouquetId)
+        public async Task Delete(int shopId, int bouquetId)
         {
-            var bouquet = GetOneBouquetById(shopId, bouquetId);
+            var bouquet = await GetOneBouquetById(shopId, bouquetId);
             _context.Bouquets.Remove(bouquet);
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
         }
 
-        public Bouquet Insert(int shopId, string name, double price, string description)
+        public async Task<Bouquet> Insert(int shopId, string name, double price, string description)
         {
-            CheckShopExists(shopId);
+            await CheckShopExists(shopId);
             var bouquet = new Bouquet()
             {
                 Name = name,
@@ -59,24 +60,24 @@ namespace BasicRestApi.API.Repositories
                 Price = price,
                 Description = description
             };
-            _context.Bouquets.Add(bouquet);
-            _context.SaveChanges();
+            _context.Bouquets.AddAsync(bouquet);
+            _context.SaveChangesAsync();
             return bouquet;
         }
 
-        public Bouquet Update(int shopId, int bouquetId, string name, double price, string description)
+        public async Task<Bouquet> Update(int shopId, int bouquetId, string name, double price, string description)
         {
-            var bouquet = GetOneBouquetById(shopId, bouquetId);
+            var bouquet = await GetOneBouquetById(shopId, bouquetId);
             bouquet.Name = name;
             bouquet.Price = price;
             bouquet.Description = description;
-            _context.SaveChanges();
+            _context.SaveChangesAsync();
             return bouquet;
         }
 
-        private void CheckShopExists(int shopId)
+        private async Task CheckShopExists(int shopId)
         {
-            var shopCheck = _context.Shops.Find(shopId);
+            var shopCheck = await _context.Shops.FindAsync(shopId);
             if (shopCheck == null)
             {
                 throw new NotFoundException();
