@@ -1,0 +1,5 @@
+D:\Madina\School\Thomas_More\Fase_3\Architecture\Projects\architecture_flowershop\Flowershop.Tests\obj\Debug\net5.0\Flowershop.Tests.csprojAssemblyReference.cache
+D:\Madina\School\Thomas_More\Fase_3\Architecture\Projects\architecture_flowershop\Flowershop.Tests\obj\Debug\net5.0\Flowershop.Tests.GeneratedMSBuildEditorConfig.editorconfig
+D:\Madina\School\Thomas_More\Fase_3\Architecture\Projects\architecture_flowershop\Flowershop.Tests\obj\Debug\net5.0\Flowershop.Tests.AssemblyInfoInputs.cache
+D:\Madina\School\Thomas_More\Fase_3\Architecture\Projects\architecture_flowershop\Flowershop.Tests\obj\Debug\net5.0\Flowershop.Tests.AssemblyInfo.cs
+D:\Madina\School\Thomas_More\Fase_3\Architecture\Projects\architecture_flowershop\Flowershop.Tests\obj\Debug\net5.0\Flowershop.Tests.csproj.CoreCompileInputs.cache

@@ -23,9 +23,51 @@
             <summary>
             Creates a new bouquet inside a shop. A 404 means that the shop with said id does not exist.
             </summary>
+            <remarks>
+                Request format:
+            
+                Post shopId/bouquets
+                {    
+                  "Id": 1,    
+                  "Name": "Anastasia",
+                  "Price": 20.0,
+                  "Description": "A bouquet of yellow tulips"        
+                }
+            </remarks>
             <param name="shopId">The unique identifier of the shop</param>
             <param name="input">The body of the bouquet</param>
             <returns></returns>
+        </member>
+        <member name="M:Flowershop.API.Controllers.BouquetController.updateBouquetToShop(System.Int32,System.Int32,Flowershop.API.Models.Web.BouquetUpsertInput)">
+            <summary>
+            Update a bouquet for the shop
+            </summary>
+            <remarks>
+                Request format:
+            
+                Put shops/bouquets
+                {    
+                  "Id": 1,    
+                  "Name": "Tulips",
+                  "StreetName": "Anastasiastraat",
+                  "StreetNumber": "28",
+                  "Region": "Anastasia"        
+                }
+            </remarks>
+            <param name="shopId">The unique identifier of the shop</param>
+            <param name="bouquetId">Bouquet id</param>
+            <param name="input">The body of the bouquet</param>
+            <returns></returns>
+        </member>
+        <member name="M:Flowershop.API.Controllers.BouquetController.deleteBouquetFromShop(System.Int32,System.Int32)">
+            <summary>
+              Delete a bouquet for the shop
+            </summary>
+            <param name="shopId">Id of the shop</param>
+            <param name="bouquetId">Id of the bouquet</param>
+            <returns></returns>
+            <response code="404">Bouquet not found</response> 
+            <response code="204">Bouquet is successfully deleted</response> 
         </member>
         <member name="M:Flowershop.API.Controllers.ShopController.getAllShops">
             <summary>
@@ -44,8 +86,51 @@
             <summary>
               Creates a shop.
             </summary>
-            <param name="input">Body of the shop</param>
+            <remarks>
+                Request format:
+            
+                Post shops
+                {    
+                  "Id": 1,    
+                  "Name": "Anastasia",
+                  "StreetName": "Anastasiastraat",
+                  "StreetNumber": "28",
+                  "Region": "Anastasia"        
+                }
+            </remarks>
+            <param name="shop">Body of the shop</param>
             <returns></returns>
+            <response code="404">Address not found</response> 
+        </member>
+        <member name="M:Flowershop.API.Controllers.ShopController.updateShop(System.Int32,Flowershop.API.Models.Web.ShopUpsertInput)">
+            <summary>
+              Update a shop
+            </summary>
+            <remarks>
+                Request format:
+            
+                PUT shops
+                {    
+                  "Id": 1,    
+                  "Name": "Anastasia",
+                  "StreetName": "Anastasiastraat",
+                  "StreetNumber": "28",
+                  "Region": "Anastasia"        
+                }
+            </remarks>
+            <param name="shopId">Id of the shop</param>
+            <param name="shop">Body of the shop</param>
+            <returns></returns>
+            <response code="404">Address not found</response> 
+        </member>
+        <member name="M:Flowershop.API.Controllers.ShopController.deleteShop(System.Int32)">
+            <summary>
+              Delete a shop
+            </summary>
+            <param name="shopId">Id of the shop</param>
+            <returns></returns>
+            <response code="404">Shop is not found</response> 
+            <response code="204">Store is successfully deleted</response> 
         </member>
         <member name="M:BasisRegisters.Vlaanderen.IBasisRegisterService.GetMunicipalityAsync(System.Int32,System.String)">
             <summary>Vraag een gemeente op.</summary>
